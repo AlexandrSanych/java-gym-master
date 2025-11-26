@@ -1,13 +1,10 @@
 package ru.yandex.practicum.gym;
 import java.util.Objects;
 
-public class TimeOfDay {
+public class TimeOfDay implements Comparable<TimeOfDay> {
 
-    //часы (от 0 до 23)
     private int hours;
-    //минуты (от 0 до 59)
     private int minutes;
-
 
     public TimeOfDay(int hours, int minutes) {
         if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
@@ -35,5 +32,18 @@ public class TimeOfDay {
     @Override
     public int hashCode() {
         return Objects.hash(hours, minutes);
+    }
+
+    @Override
+    public int compareTo(TimeOfDay other) {
+        if (this.hours != other.hours) {
+            return Integer.compare(this.hours, other.hours);
+        }
+        return Integer.compare(this.minutes, other.minutes);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%02d:%02d", hours, minutes);
     }
 }
